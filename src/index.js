@@ -1,6 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MiULibrary from './MiULibrary';
+import React from "react";
+import MiULibrary from "./MiULibrary";
+import { createRoot } from "react-dom/client";
 
-
-ReactDOM.render(<MiULibrary />, document.getElementById('root'));
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(<MiULibrary />);
