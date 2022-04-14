@@ -1,4 +1,4 @@
-function App() {
+function MiULibrary() {
   return (
     <div className="App">
       <h1>Hello friend?</h1>
@@ -6,4 +6,4 @@ function App() {
   );
 }
 
-export default App;
+export default MiULibrary;
