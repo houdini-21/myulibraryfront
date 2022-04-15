@@ -1,13 +1,16 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-
-import HomeStudent from "../components/students/HomeStudent";
+import Navbar from "../components/students/UI/Navbar";
+import HomeStudent from "../components/students/Home/HomeStudent";
 
 const RoutesStudent = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomeStudent title="Home" />} />
-    </Routes>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomeStudent />} />
+      </Routes>
+    </>
   );
 };
 
