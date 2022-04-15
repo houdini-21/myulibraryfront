@@ -4,6 +4,9 @@ module.exports = {
     extend: {
       colors: {
         primary: "#0099ff",
+      },
+      width: {
+        '48': '47%',
       }
     },
   },
