@@ -1,29 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../auth/AuthContext";
 import httpClient from "../../../services/services";
-import CardItem from "../UI/CardItem";
 import { loadProgressBar } from "axios-progress-bar";
+import CardItem from "../UI/CardItem";
 
-
-const HomeLibrarian = () => {
-  const { user } = useContext(AuthContext);
+const RequestsBooks = () => {
   const [books, setBooks] = useState([]);
   const [page, setPage] = useState(1);
+  const [body, setBody] = useState({});
+  const { user } = useContext(AuthContext);
 
-  const getAllBooks = () => {
+  const loadBooks = async () => {
     httpClient
-      .get(`librarian/getBooks/${page}`, {
+      .post(`librarian/getRequestedBooks/${page}`, body, {
         Authorization: `JWT ${user.token}`,
       })
       .then((res) => {
         setBooks((books) => books.concat(res.data.books));
+        console.log(res.data.books);
         loadProgressBar();
       });
   };
 
   useEffect(() => {
-    getAllBooks();
-  }, [page]);
+    loadBooks();
+  }, [page, body]);
 
   return (
     <div className="px-8 py-5 w-full">
@@ -32,11 +33,15 @@ const HomeLibrarian = () => {
           <CardItem
             key={book._id}
             idBook={book._id}
-            title={book.title}
-            author={book.author}
-            publishedYear={book.publishedYear}
-            genre={book.genre}
-            stock={book.stock}
+            title={book.idBook.title}
+            author={book.idBook.author}
+            publishedYear={book.idBook.publishedYear}
+            genre={book.idBook.genre}
+            dateRequest={book.dateRequest}
+            status={book.status}
+            dateReturn={book.dateReturn}
+            userRequest={book.idStudent.name}
+            idUser={book.idStudent._id}
           />
         ))}
       </div>
@@ -51,4 +56,4 @@ const HomeLibrarian = () => {
   );
 };
 
-export default HomeLibrarian;
+export default RequestsBooks;

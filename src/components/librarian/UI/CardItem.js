@@ -10,7 +10,9 @@ const CardItem = ({
   stock,
   dateRequest,
   dateReturn,
+  userRequest,
   status,
+  idUser
 }) => {
   return (
     <div
@@ -88,6 +90,19 @@ const CardItem = ({
                 </span>
               </p>
             )}
+
+            {userRequest && (
+              <p className="text-sm text-indigo-300 mb-1 font-bold">
+                User:
+                <span className="font-normal">{userRequest}</span>
+              </p>
+            )}
+            {idUser && (
+              <p className="text-sm text-indigo-300 mb-1 font-bold">
+                User id:
+                <span className="font-normal">{idUser}</span>
+              </p>
+            )}
           </div>
           <div className="w-full flex justify-between items-start flex-col">
             {stock != null && (
@@ -98,7 +113,6 @@ const CardItem = ({
                 </span>
               </p>
             )}
-            
           </div>
         </div>
       </div>

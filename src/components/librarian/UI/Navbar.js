@@ -50,6 +50,13 @@ const Navbar = () => {
 
                   <NavLink
                     className="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium nav"
+                    to="requestedsBooks"
+                    end
+                  >
+                    Requesteds Books
+                  </NavLink>
+                  <NavLink
+                    className="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium nav"
                     to="createBooks"
                     end
                   >
@@ -137,6 +144,13 @@ const Navbar = () => {
                   end
                 >
                   Create Students
+                </NavLink>
+                <NavLink
+                  className="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium nav"
+                  to="requestedsBooks"
+                  end
+                >
+                  Requesteds Books
                 </NavLink>
                 <NavLink
                   className="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium nav"
