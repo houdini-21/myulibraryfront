@@ -7,9 +7,3 @@
   height: 5px;
 }
 
-.bg-login {
-  background-image: url("../public/wallpaper-login.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}

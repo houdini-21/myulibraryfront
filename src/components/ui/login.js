@@ -6,11 +6,11 @@ import { useFormik } from "formik";
 import httpClient from "../../services/services";
 import { ToastContainer, toast } from "react-toastify";
 import { loadProgressBar } from "axios-progress-bar";
-
+import avatar from "./assets/avatar-login.svg";
+import jwt_decode from "jwt-decode";
 import "react-toastify/dist/ReactToastify.css";
 import "axios-progress-bar/dist/nprogress.css";
-import avatar from "./assets/avatar-login.svg";
-
+import "./assets/login.css";
 
 const Login = () => {
   const { dispatch } = useContext(AuthContext);
@@ -28,10 +28,12 @@ const Login = () => {
         .then(({ data }) => {
           const { token, message } = data;
           if (token) {
+            const { userId, role } = jwt_decode(token);
             dispatch({
               type: types.login,
-              payload: { token },
+              payload: { token, email, userId, role },
             });
+
             toast.success(message, {
               position: "top-center",
               autoClose: 1400,
@@ -41,13 +43,19 @@ const Login = () => {
               draggable: true,
               progress: undefined,
             });
+
             setTimeout(() => {
-              navigate("/private");
+              if (role === 1) {
+                navigate("/librarian");
+              } else {
+                navigate("/student");
+              }
             }, 2000);
           }
         })
         .catch((err) => {
           const { message } = err.response.data;
+
           toast.error(message, {
             position: "top-center",
             autoClose: 5000,
