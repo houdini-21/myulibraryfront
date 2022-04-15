@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from "react";
 import App from "./routers/App";
 import { AuthContext } from "./auth/AuthContext";
 import { authReducer } from "./auth/authReducer";
+import "./index.css";
 
 
 const init = () => {
