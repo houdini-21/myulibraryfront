@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import httpClient from "../../../services/services";
 import { AuthContext } from "../../../auth/AuthContext";
+import { loadProgressBar } from "axios-progress-bar";
+import { toast } from "react-toastify";
+
 
 const Cards = ({ idBook, title, author, publishedYear, genre, stock }) => {
   const { user } = useContext(AuthContext);
@@ -15,7 +18,16 @@ const Cards = ({ idBook, title, author, publishedYear, genre, stock }) => {
         Authorization: `JWT ${user.token}`,
       })
       .then((res) => {
-        console.log(res);
+        const { message } = res.data;
+        toast.success(message, {
+          position: "top-right",
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+        loadProgressBar();
       });
   };
 

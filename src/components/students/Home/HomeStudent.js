@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import httpClient from "../../../services/services";
 import { AuthContext } from "../../../auth/AuthContext";
 import Cards from "../UI/Cards";
+import { ToastContainer } from "react-toastify";
+import { loadProgressBar } from "axios-progress-bar";
 
 const HomeStudent = () => {
   const [books, setBooks] = useState([]);
@@ -9,10 +11,15 @@ const HomeStudent = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
+    const body = {};
+
     httpClient
-      .get(`student/books/${page}`, { Authorization: `JWT ${user.token}` })
+      .post(`student/books/search/${page}`, body, {
+        Authorization: `JWT ${user.token}`,
+      })
       .then((res) => {
         setBooks((books) => books.concat(res.data.books));
+        loadProgressBar();
       });
     console.log(books);
   }, [page]);
@@ -38,6 +45,7 @@ const HomeStudent = () => {
       >
         Load more
       </button>
+      <ToastContainer />
     </div>
   );
 };
