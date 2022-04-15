@@ -53,28 +53,28 @@ const HomeStudent = () => {
             type="text"
             name="title"
             placeholder="Title"
-            className="bg-gray-200 appearance-none border-2 my-2 border-gray-200 rounded w-full md:w-48 lg:w-1/6 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+            className="bg-gray-200 appearance-none border-2 my-2 border-gray-200 rounded w-full md:w-48 lg:w-1/6 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
             onChange={Formik.handleChange}
           />
           <input
             type="text"
             name="author"
             placeholder="Author"
-            className="bg-gray-200 appearance-none border-2 my-2 border-gray-200 rounded w-full md:w-48 lg:w-1/6 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+            className="bg-gray-200 appearance-none border-2 my-2 border-gray-200 rounded w-full md:w-48 lg:w-1/6 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
             onChange={Formik.handleChange}
           />
           <input
             type="text"
             name="publishedYear"
             placeholder="Published Year"
-            className="bg-gray-200 appearance-none border-2 my-2 border-gray-200 rounded w-full md:w-48 lg:w-1/6 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+            className="bg-gray-200 appearance-none border-2 my-2 border-gray-200 rounded w-full md:w-48 lg:w-1/6 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
             onChange={Formik.handleChange}
           />
           <input
             type="text"
             name="genre"
             placeholder="Genre"
-            className="bg-gray-200 appearance-none border-2 my-2 border-gray-200 rounded w-full md:w-48 lg:w-1/6 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+            className="bg-gray-200 appearance-none border-2 my-2 border-gray-200 rounded w-full md:w-48 lg:w-1/6 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
             onChange={Formik.handleChange}
           />
           <button

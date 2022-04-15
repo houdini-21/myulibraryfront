@@ -1,9 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Transition } from "@headlessui/react";
-import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../auth/AuthContext";
+import { types } from "../../../types/types";
+import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { dispatch } = useContext(AuthContext);
+  let navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch({
+      type: types.logout,
+    });
+    navigate("/");
+  };
+
   return (
     <div>
       <nav className="bg-gray-800">
@@ -34,12 +47,13 @@ const Navbar = () => {
                   >
                     My requests
                   </NavLink>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  <button
+                    className="text-gray-300 hover:bg-gray-700
+                   hover:text-white px-3 py-2 rounded-md text-sm font-medium right-1 absolute"
+                    onClick={() => handleLogout()}
                   >
                     Sign out
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -102,26 +116,28 @@ const Navbar = () => {
           {(ref) => (
             <div className="md:hidden" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a
-                  href="#"
-                  className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
+                <NavLink
+                  className="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium nav"
+                  to="/student"
+                  end
                 >
                   Home
-                </a>
-
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                </NavLink>
+                <NavLink
+                  className="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium nav"
+                  to="request"
+                  end
                 >
                   My requests
-                </a>
+                </NavLink>
 
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                <button
+                  className="text-gray-300 hover:bg-gray-700
+                   hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  onClick={() => handleLogout()}
                 >
                   Sign out
-                </a>
+                </button>
               </div>
             </div>
           )}
