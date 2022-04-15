@@ -6,21 +6,21 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { loadProgressBar } from "axios-progress-bar";
 
-const CreateStudents = () => {
+const CreateBooks = () => {
   const { user } = useContext(AuthContext);
   let navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      lastname: "",
-      email: "",
-      password: "",
-      role: 2,
+      title: "",
+      author: "",
+      publishedYear: "",
+      genre: "",
+      stock: "",
     },
     onSubmit: (values) => {
       httpClient
-        .post("librarian/createUsers", values, {
+        .post("librarian/add", values, {
           Authorization: `JWT ${user.token}`,
         })
         .then((res) => {
@@ -40,6 +40,7 @@ const CreateStudents = () => {
           loadProgressBar();
         })
         .catch((err) => {
+          console.log(err);
           const { message } = err.response.data;
           toast.error(message, {
             position: "top-center",
@@ -60,10 +61,10 @@ const CreateStudents = () => {
         <div className="flex flex-col w-full justify-center items-center mt-4 mb-4">
           <input
             type="text"
-            name="name"
-            placeholder="Name"
+            name="title"
+            placeholder="Title"
             onChange={formik.handleChange}
-            value={formik.values.name}
+            value={formik.values.title}
             className="focus:border-green focus:ring-1 focus:ring-green focus:outline-none
                     w-1/2
                     text-base text-black
@@ -76,10 +77,10 @@ const CreateStudents = () => {
           />
           <input
             type="text"
-            name="lastname"
-            placeholder="Last Name"
+            name="author"
+            placeholder="Author"
             onChange={formik.handleChange}
-            value={formik.values.lastname}
+            value={formik.values.author}
             className="focus:border-green focus:ring-1 focus:ring-green focus:outline-none
                     w-1/2
                     text-base text-black
@@ -91,11 +92,11 @@ const CreateStudents = () => {
                     my-4"
           />
           <input
-            type="email"
-            name="email"
-            placeholder="Email"
+            type="text"
+            name="publishedYear"
+            placeholder="Published Year"
             onChange={formik.handleChange}
-            value={formik.values.email}
+            value={formik.values.publishedYear}
             className="focus:border-green focus:ring-1 focus:ring-green focus:outline-none
                     w-1/2
                     text-base text-black
@@ -107,11 +108,27 @@ const CreateStudents = () => {
                     my-4"
           />
           <input
-            type="password"
-            name="password"
-            placeholder="Password"
+            type="text"
+            name="genre"
+            placeholder="Genre"
             onChange={formik.handleChange}
-            value={formik.values.password}
+            value={formik.values.genre}
+            className="focus:border-green focus:ring-1 focus:ring-green focus:outline-none
+                    w-1/2
+                    text-base text-black
+                    placeholder-gray-500
+                    border border-gray-200
+                    rounded-md
+                    py-2
+                    px-2
+                    my-4"
+          />
+          <input
+            type="text"
+            name="stock"
+            placeholder="Stock"
+            onChange={formik.handleChange}
+            value={formik.values.stock}
             className="focus:border-green focus:ring-1 focus:ring-green focus:outline-none
                     w-1/2
                     text-base text-black
@@ -130,9 +147,8 @@ const CreateStudents = () => {
           </button>
         </div>
       </form>
-      <ToastContainer />
     </div>
   );
 };
 
-export default CreateStudents;
+export default CreateBooks;
