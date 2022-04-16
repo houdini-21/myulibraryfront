@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const urlBase = "http://164.92.146.62";
+const urlBase = "https://mylibraryu.herokuapp.com/";
 
 /**
  * @param {string}  url url a la cual consultar
