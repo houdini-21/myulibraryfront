@@ -3,13 +3,14 @@ import httpClient from "../../../services/services";
 import { AuthContext } from "../../../auth/AuthContext";
 import Cards from "../UI/Cards";
 import { useFormik } from "formik";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { loadProgressBar } from "axios-progress-bar";
 
 const HomeStudent = () => {
   const [books, setBooks] = useState([]);
   const [page, setPage] = useState(1);
   const [body, setBody] = useState({});
+  const [numPages, setNumPages] = useState(1);
   const { user } = useContext(AuthContext);
 
   const Formik = useFormik({
@@ -26,16 +27,38 @@ const HomeStudent = () => {
     },
   });
 
-  const loadBooks = async () => {
-    const { data } = await httpClient.post(
-      `student/books/search/${page}`,
-      body,
-      {
-        Authorization: `JWT ${user.token}`,
-      }
-    );
-    setBooks((books) => books.concat(data.books));
+  const loadBooks = () => {
     loadProgressBar();
+    httpClient
+      .post(`student/books/search/${page}`, body, {
+        Authorization: `JWT ${user.token}`,
+      })
+      .then((res) => {
+        if (res.data.books.length > 0) {
+          setBooks((books) => books.concat(res.data.books));
+          setNumPages(res.data.numPages);
+        } else {
+          setBooks([]);
+        }
+      })
+      .catch((err) => {
+        const { message } = err.response.data;
+        toast.error(message, {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
+
+  const loadMore = () => {
+    if (page < numPages) {
+      setPage((page) => page + 1);
+    }
   };
 
   useEffect(() => {
@@ -87,24 +110,30 @@ const HomeStudent = () => {
       </div>
 
       <div className="flex flex-row w-full flex-wrap justify-around mt-4 mb-4">
-        {books.map((book) => (
-          <Cards
-            key={book._id}
-            idBook={book._id}
-            title={book.title}
-            author={book.author}
-            publishedYear={book.publishedYear}
-            genre={book.genre}
-            stock={book.stock}
-          />
-        ))}
+        {books.length > 0 ? (
+          books.map((book) => (
+            <Cards
+              key={book._id}
+              idBook={book._id}
+              title={book.title}
+              author={book.author}
+              publishedYear={book.publishedYear}
+              genre={book.genre}
+              stock={book.stock}
+            />
+          ))
+        ) : (
+          <div className="text-center">No books found</div>
+        )}
       </div>
-      <button
-        className="border-blue-500 hover:bg-blue-500 hover:text-white text-blue-500 border-2 text-lg font-bold py-2 px-4 rounded w-full h-12 mt-4"
-        onClick={() => setPage(page + 1)}
-      >
-        Load more
-      </button>
+      {page < numPages && (
+        <button
+          className="border-blue-500 hover:bg-blue-500 hover:text-white text-blue-500 border-2 text-lg font-bold py-2 px-4 rounded w-full h-12 mt-4"
+          onClick={loadMore}
+        >
+          Load more
+        </button>
+      )}
       <ToastContainer />
     </div>
   );

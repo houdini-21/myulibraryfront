@@ -9,6 +9,7 @@ const RequestStudent = () => {
   const { user } = useContext(AuthContext);
   const [page, setPage] = useState(1);
   const [books, setBooks] = useState([]);
+  const [numPages, setNumPages] = useState(1);
 
   const requestBookingHistory = () => {
     const body = {
@@ -20,8 +21,27 @@ const RequestStudent = () => {
       })
       .then((res) => {
         setBooks((books) => books.concat(res.data.books));
+        setNumPages(res.data.numPages);
         loadProgressBar();
+      })
+      .catch((err) => {
+        const { message } = err.response.data;
+        toast.error(message, {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
+  };
+
+  const loadMore = () => {
+    if (page < numPages) {
+      setPage((page) => page + 1);
+    }
   };
 
   useEffect(() => {
@@ -45,12 +65,14 @@ const RequestStudent = () => {
           />
         ))}
       </div>
-      <button
-        className="border-blue-500 hover:bg-blue-500 hover:text-white text-blue-500 border-2 text-lg font-bold py-2 px-4 rounded w-full h-12 mt-4"
-        onClick={() => setPage(page + 1)}
-      >
-        Load more
-      </button>
+      {page < numPages && (
+        <button
+          className="border-blue-500 hover:bg-blue-500 hover:text-white text-blue-500 border-2 text-lg font-bold py-2 px-4 rounded w-full h-12 mt-4"
+          onClick={loadMore}
+        >
+          Load more
+        </button>
+      )}
     </div>
   );
 };
