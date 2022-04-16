@@ -16,18 +16,7 @@ const RequestDetails = () => {
   const [bookDetails, setBooksDetails] = useState([]);
   let navigate = useNavigate();
 
-  const getRequestedDetails = () => {
-    httpClient
-      .get(`librarian/requestBookDetail/${idRequest}`, {
-        Authorization: `JWT ${user.token}`,
-      })
-      .then((res) => {
-        setDetails(res.data.result);
-        setBooksDetails(res.data.result.idBook);
-        setUserDetails(res.data.result.idStudent);
-        loadProgressBar();
-      });
-  };
+
 
   const returnBook = () => {
     
@@ -69,8 +58,20 @@ const RequestDetails = () => {
   };
 
   useEffect(() => {
+    const getRequestedDetails = () => {
+      httpClient
+        .get(`librarian/requestBookDetail/${idRequest}`, {
+          Authorization: `JWT ${user.token}`,
+        })
+        .then((res) => {
+          setDetails(res.data.result);
+          setBooksDetails(res.data.result.idBook);
+          setUserDetails(res.data.result.idStudent);
+          loadProgressBar();
+        });
+    };
     getRequestedDetails();
-  }, []);
+  }, [idRequest, user]);
 
   return (
     <div className="px-8 py-5 w-screen h-screen">
@@ -79,6 +80,8 @@ const RequestDetails = () => {
           <img
             className="w-full lg:h-full h-64 object-cover lg:rounded-l-lg mb-4 lg:mb-0"
             src="https://charlottesometimesgoestothemovies.files.wordpress.com/2020/03/books.jpg"
+            alt="books"
+
           />
         </div>
         <div className="lg:w-5/12 h-full w-full">

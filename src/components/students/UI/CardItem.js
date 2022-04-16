@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Moment from "react-moment";
 
 const CardItem = ({
@@ -39,7 +39,7 @@ const CardItem = ({
         <img
           className="h-1/2 w-full sm:h-full sm:w-1/2 object-cover"
           src="https://charlottesometimesgoestothemovies.files.wordpress.com/2020/03/books.jpg"
-          alt="image"
+          alt="books"
         />
 
         <div
@@ -102,7 +102,7 @@ const CardItem = ({
             {requestBooking && (
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white cursor-pointer font-bold py-2 px-4 rounded mt-3.5 w-full disabled:bg-blue-300 disabled:hover:bg-blue-400 disabled:cursor-not-allowed"
-                disabled={stock == 0}
+                disabled={stock === 0}
                 onClick={() => requestBooking(idBook)}
               >
                 Rent

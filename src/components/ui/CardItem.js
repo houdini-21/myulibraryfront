@@ -10,6 +10,7 @@ const CardItem = ({ idBook, title, author, url }) => {
             <img
               className="rounded shadow-md object-cover w-full h-full"
               src="https://charlottesometimesgoestothemovies.files.wordpress.com/2020/03/books.jpg"
+              alt="books"
             />
           </div>
           <div className="flex flex-col mt-4">

@@ -10,17 +10,6 @@ const BooksDetails = () => {
   const [details, setDetails] = useState([]);
   const { idBook } = useParams();
 
-  const getBookDetails = () => {
-    httpClient
-      .get(`student/books/details/${idBook}`, {
-        Authorization: `JWT ${user.token}`,
-      })
-      .then((res) => {
-        setDetails(res.data);
-        loadProgressBar();
-      });
-  };
-
   const requestBooking = () => {
     const body = {
       idBook,
@@ -58,8 +47,18 @@ const BooksDetails = () => {
   };
 
   useEffect(() => {
+    const getBookDetails = () => {
+      httpClient
+        .get(`student/books/details/${idBook}`, {
+          Authorization: `JWT ${user.token}`,
+        })
+        .then((res) => {
+          setDetails(res.data);
+          loadProgressBar();
+        });
+    };
     getBookDetails();
-  }, []);
+  }, [user, idBook]);
 
   return (
     <div className="px-8 py-5 w-screen h-screen">
@@ -68,6 +67,7 @@ const BooksDetails = () => {
           <img
             className="w-full lg:h-full h-64 object-cover lg:rounded-l-lg mb-4 lg:mb-0"
             src="https://charlottesometimesgoestothemovies.files.wordpress.com/2020/03/books.jpg"
+            alt="books"
           />
         </div>
         <div className="lg:w-5/12 h-full w-full">
@@ -81,12 +81,12 @@ const BooksDetails = () => {
               Year: {details.publishedYear}
             </p>
             <p className="text-gray-600 text-lg">
-              Stock: {details.stock == 0 ? "Out stock" : details.stock}
+              Stock: {details.stock === 0 ? "Out stock" : details.stock}
             </p>
 
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-blue-300 disabled:hover:bg-blue-400 disabled:cursor-not-allowed"
-              disabled={details.stock == 0}
+              disabled={details.stock === 0}
               onClick={() => requestBooking(details.id)}
             >
               Request Book

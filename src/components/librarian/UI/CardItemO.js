@@ -40,7 +40,7 @@ const CardItem = ({
         <img
           className="h-1/2 w-full sm:h-full sm:w-1/2 object-cover"
           src="https://charlottesometimesgoestothemovies.files.wordpress.com/2020/03/books.jpg"
-          alt="image"
+          alt="image books"
         />
 
         <div
