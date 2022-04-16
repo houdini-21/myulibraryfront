@@ -40,7 +40,6 @@ const CreateBooks = () => {
           loadProgressBar();
         })
         .catch((err) => {
-          console.log(err);
           const { message } = err.response.data;
           toast.error(message, {
             position: "top-center",
@@ -141,12 +140,13 @@ const CreateBooks = () => {
           />
           <button
             type="submit"
-            className="focus:bg-primary-400 py-2 px-12 rounded bg-primary text-white mt-4"
+            className="focus:bg-primary-400 py-2 px-12 rounded bg-primary text-white mt-4 w-1/2"
           >
             Create
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

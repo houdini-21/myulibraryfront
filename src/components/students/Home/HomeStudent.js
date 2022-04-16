@@ -123,7 +123,9 @@ const HomeStudent = () => {
             />
           ))
         ) : (
-          <div className="text-center">No books found</div>
+          <div className="flex flex-col items-center">
+            <h3 className="text-3xl text-gray-800">No books found</h3>
+          </div>
         )}
       </div>
       {page < numPages && (

@@ -124,7 +124,7 @@ const CreateStudents = () => {
           />
           <button
             type="submit"
-            className="focus:bg-primary-400 py-2 px-12 rounded bg-primary text-white mt-4"
+            className="focus:bg-primary-400 py-2 px-12 rounded bg-primary text-white mt-4 w-1/2"
           >
             Create
           </button>
