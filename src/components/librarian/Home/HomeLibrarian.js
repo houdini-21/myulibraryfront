@@ -47,7 +47,7 @@ const HomeLibrarian = () => {
 
   return (
     <div className="px-8 py-5 w-full">
-    <div class="flex flex-row pt-4 justify-evenly items-start w-full flex-wrap">
+    <div className="flex flex-row pt-4 justify-evenly items-start w-full flex-wrap">
         {books.length > 0 ? (
           books.map((book) => (
             <CardItem

@@ -12,7 +12,7 @@ const CardItem = ({ idBook, title, author, url }) => {
               src="https://m.media-amazon.com/images/I/51TTNGsFeAL.jpg"
             />
           </div>
-          <div class="flex flex-col mt-4">
+          <div className="flex flex-col mt-4">
             <p className="text-sm md:text-lg lg:text-lg text-blue-500 font-bold capitalize">
               {title}
             </p>
