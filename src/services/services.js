@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from "axios";
 
-const urlBase = 'http://164.92.146.62'
+const urlBase = "http://164.92.146.62";
 
 /**
  * @param {string}  url url a la cual consultar
@@ -8,44 +8,50 @@ const urlBase = 'http://164.92.146.62'
  * en caso de ser asi, retorna la url. en caso contrario, se asume que es un fragmento
  * de path por lo que se concatena con la constante urlBase
  **/
-const readUrl = (url = '') =>
-  url.startsWith('http://') || url.startsWith('https://') ? url : `${urlBase}/${url}`
+const readUrl = (url = "") =>
+  url.startsWith("http://") || url.startsWith("https://")
+    ? url
+    : `${urlBase}/${url}`;
 
-const get = (url = '', headers = {}) => axios.get(readUrl(url), {
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    ...headers
-  }
-})
+const get = (url = "", headers = {}) =>
+  axios.get(readUrl(url), {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      ...headers,
+    },
+  });
 
-const post = (url = '', body = {}, headers = {}) => axios.post(readUrl(url), body, {
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    ...headers
-  }
-})
+const post = (url = "", body = {}, headers = {}) =>
+  axios.post(readUrl(url), body, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      ...headers,
+    },
+  });
 
-const put = (url = '', body = {}, headers = {}) => axios.put(readUrl(url), body, {
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    ...headers
-  }
-})
+const put = (url = "", body = {}, headers = {}) =>
+  axios.put(readUrl(url), body, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      ...headers,
+    },
+  });
 
-const del = (url = '', headers = {}) => axios.delete(readUrl(url), {
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    ...headers
-  }
-})
-
-export default {
+const del = (url = "", headers = {}) =>
+  axios.delete(readUrl(url), {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      ...headers,
+    },
+  });
+const exportObj = {
   get,
   post,
   put,
   delete: del,
-}
+};
+export default exportObj;

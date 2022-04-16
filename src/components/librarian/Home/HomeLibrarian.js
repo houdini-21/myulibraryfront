@@ -11,33 +11,34 @@ const HomeLibrarian = () => {
   const [page, setPage] = useState(1);
   const [numPages, setNumPages] = useState(1);
 
-  const getAllBooks = () => {
-    httpClient
-      .get(`librarian/getBooks/${page}`, {
-        Authorization: `JWT ${user.token}`,
-      })
-      .then((res) => {
-        setBooks((books) => books.concat(res.data.books));
-        setNumPages(res.data.numPages);
-        loadProgressBar();
-      })
-      .catch((err) => {
-        const { message } = err.response.data;
-        toast.error(message, {
-          position: "top-center",
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-  };
+ 
 
   useEffect(() => {
+    const getAllBooks = () => {
+      httpClient
+        .get(`librarian/getBooks/${page}`, {
+          Authorization: `JWT ${user.token}`,
+        })
+        .then((res) => {
+          setBooks((books) => books.concat(res.data.books));
+          setNumPages(res.data.numPages);
+          loadProgressBar();
+        })
+        .catch((err) => {
+          const { message } = err.response.data;
+          toast.error(message, {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        });
+    };
     getAllBooks();
-  }, [page]);
+  }, [page, user]);
 
   const loadMore = () => {
     if (page < numPages) {

@@ -7,22 +7,8 @@ import CardItem from "../../ui/CardItem";
 const RequestsBooks = () => {
   const [books, setBooks] = useState([]);
   const [page, setPage] = useState(1);
-  const [body, setBody] = useState({});
   const { user } = useContext(AuthContext);
   const [numPages, setNumPages] = useState(1);
-
-  const loadBooks = async () => {
-    httpClient
-      .post(`librarian/getRequestedBooks/${page}`, body, {
-        Authorization: `JWT ${user.token}`,
-      })
-      .then((res) => {
-        setBooks((books) => books.concat(res.data.books));
-        setNumPages(res.data.numPages);
-        console.log(res.data.books);
-        loadProgressBar();
-      });
-  };
 
   const loadMore = () => {
     if (page < numPages) {
@@ -31,8 +17,24 @@ const RequestsBooks = () => {
   };
 
   useEffect(() => {
+    const loadBooks = async () => {
+      httpClient
+        .post(
+          `librarian/getRequestedBooks/${page}`,
+          {},
+          {
+            Authorization: `JWT ${user.token}`,
+          }
+        )
+        .then((res) => {
+          setBooks((books) => books.concat(res.data.books));
+          setNumPages(res.data.numPages);
+          console.log(res.data.books);
+          loadProgressBar();
+        });
+    };
     loadBooks();
-  }, [page, body]);
+  }, [page, user]);
 
   return (
     <div className="px-8 py-5 w-full">
@@ -43,7 +45,7 @@ const RequestsBooks = () => {
             idBook={book._id}
             title={book.idBook.title}
             author={book.idBook.author}
-            url={'librarian/requestdetail'}
+            url={"librarian/requestdetail"}
           />
         ))}
       </div>

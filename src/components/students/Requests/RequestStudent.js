@@ -11,32 +11,7 @@ const RequestStudent = () => {
   const [books, setBooks] = useState([]);
   const [numPages, setNumPages] = useState(1);
 
-  const requestBookingHistory = () => {
-    const body = {
-      idStudent: user.userId,
-    };
-    httpClient
-      .post(`student/books/myrequests/${page}`, body, {
-        Authorization: `JWT ${user.token}`,
-      })
-      .then((res) => {
-        setBooks((books) => books.concat(res.data.books));
-        setNumPages(res.data.numPages);
-        loadProgressBar();
-      })
-      .catch((err) => {
-        const { message } = err.response.data;
-        toast.error(message, {
-          position: "top-center",
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-  };
+
 
   const loadMore = () => {
     if (page < numPages) {
@@ -45,8 +20,34 @@ const RequestStudent = () => {
   };
 
   useEffect(() => {
+    const requestBookingHistory = () => {
+      const body = {
+        idStudent: user.userId,
+      };
+      httpClient
+        .post(`student/books/myrequests/${page}`, body, {
+          Authorization: `JWT ${user.token}`,
+        })
+        .then((res) => {
+          setBooks((books) => books.concat(res.data.books));
+          setNumPages(res.data.numPages);
+          loadProgressBar();
+        })
+        .catch((err) => {
+          const { message } = err.response.data;
+          toast.error(message, {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        });
+    };
     requestBookingHistory();
-  }, [page]);
+  }, [page, user]);
 
   return (
     <div className="px-8 py-5 w-full">

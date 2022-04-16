@@ -27,34 +27,6 @@ const HomeStudent = () => {
     },
   });
 
-  const loadBooks = () => {
-    loadProgressBar();
-    httpClient
-      .post(`student/books/search/${page}`, body, {
-        Authorization: `JWT ${user.token}`,
-      })
-      .then((res) => {
-        if (res.data.books.length > 0) {
-          setBooks((books) => books.concat(res.data.books));
-          setNumPages(res.data.numPages);
-        } else {
-          setBooks([]);
-        }
-      })
-      .catch((err) => {
-        const { message } = err.response.data;
-        toast.error(message, {
-          position: "top-center",
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-  };
-
   const loadMore = () => {
     if (page < numPages) {
       setPage((page) => page + 1);
@@ -62,8 +34,35 @@ const HomeStudent = () => {
   };
 
   useEffect(() => {
+    const loadBooks = () => {
+      loadProgressBar();
+      httpClient
+        .post(`student/books/search/${page}`, body, {
+          Authorization: `JWT ${user.token}`,
+        })
+        .then((res) => {
+          if (res.data.books.length > 0) {
+            setBooks((books) => books.concat(res.data.books));
+            setNumPages(res.data.numPages);
+          } else {
+            setBooks([]);
+          }
+        })
+        .catch((err) => {
+          const { message } = err.response.data;
+          toast.error(message, {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        });
+    };
     loadBooks();
-  }, [page, body]);
+  }, [page, body, user]);
 
   return (
     <div className="px-8 py-5 w-full">
