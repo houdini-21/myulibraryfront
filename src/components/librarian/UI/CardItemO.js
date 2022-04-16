@@ -39,7 +39,7 @@ const CardItem = ({
       >
         <img
           className="h-1/2 w-full sm:h-full sm:w-1/2 object-cover"
-          src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80"
+          src="https://charlottesometimesgoestothemovies.files.wordpress.com/2020/03/books.jpg"
           alt="image"
         />
 

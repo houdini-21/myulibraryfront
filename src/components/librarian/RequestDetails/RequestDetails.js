@@ -78,7 +78,7 @@ const RequestDetails = () => {
         <div className="lg:w-5/12 w-full">
           <img
             className="w-full lg:h-full h-64 object-cover lg:rounded-l-lg mb-4 lg:mb-0"
-            src="https://picsum.photos/200/300"
+            src="https://charlottesometimesgoestothemovies.files.wordpress.com/2020/03/books.jpg"
           />
         </div>
         <div className="lg:w-5/12 h-full w-full">

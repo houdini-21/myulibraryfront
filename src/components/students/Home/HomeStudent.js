@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import httpClient from "../../../services/services";
 import { AuthContext } from "../../../auth/AuthContext";
-import Cards from "../UI/Cards";
+import CardItem from "../../ui/CardItem";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import { loadProgressBar } from "axios-progress-bar";
@@ -112,14 +112,12 @@ const HomeStudent = () => {
       <div className="flex flex-row w-full flex-wrap justify-around mt-4 mb-4">
         {books.length > 0 ? (
           books.map((book) => (
-            <Cards
+            <CardItem
               key={book._id}
               idBook={book._id}
               title={book.title}
               author={book.author}
-              publishedYear={book.publishedYear}
-              genre={book.genre}
-              stock={book.stock}
+              url={`student/details`}
             />
           ))
         ) : (
