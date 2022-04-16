@@ -4,6 +4,7 @@ import { AuthContext } from "../../../auth/AuthContext";
 import { types } from "../../../types/types";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import logo from "./assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,21 +20,17 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="bg-gray-800">
+      <nav className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <img
-                  className="h-8 w-8"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                  alt="Workflow"
-                />
+                <img className="h-8 w-8" src={logo} alt="Workflow" />
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                   <NavLink
-                    className="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium nav"
+                    className="hover:bg-primary hover:text-white text-primary px-3 py-2 rounded-md text-sm font-medium nav"
                     to="/student"
                     end
                   >
@@ -41,15 +38,15 @@ const Navbar = () => {
                   </NavLink>
 
                   <NavLink
-                    className="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium nav"
+                    className="hover:bg-primary hover:text-white text-primary px-3 py-2 rounded-md text-sm font-medium nav"
                     to="request"
                     end
                   >
                     My requests
                   </NavLink>
                   <button
-                    className="text-gray-300 hover:bg-gray-700
-                   hover:text-white px-3 py-2 rounded-md text-sm font-medium right-1 absolute"
+                    className="text-red-500 hover:bg-red-500 hover:text-white
+                    px-3 py-2 rounded-md text-sm font-medium right-1 absolute"
                     onClick={() => handleLogout()}
                   >
                     Sign out
@@ -61,7 +58,7 @@ const Navbar = () => {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
-                className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                className="bg-white inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-primary hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 aria-controls="mobile-menu"
                 aria-expanded="false"
               >
@@ -117,14 +114,14 @@ const Navbar = () => {
             <div className="md:hidden" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <NavLink
-                  className="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium nav"
+                  className="hover:bg-primary hover:text-white text-primary px-3 py-2 rounded-md text-sm font-medium nav"
                   to="/student"
                   end
                 >
                   Home
                 </NavLink>
                 <NavLink
-                  className="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium nav"
+                  className="hover:bg-primary hover:text-white text-primary px-3 py-2 rounded-md text-sm font-medium nav"
                   to="request"
                   end
                 >
@@ -132,7 +129,7 @@ const Navbar = () => {
                 </NavLink>
 
                 <button
-                  className="text-gray-300 hover:bg-gray-700
+                  className="text-red-500 hover:bg-red-500
                    hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   onClick={() => handleLogout()}
                 >
