@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../auth/AuthContext";
 import httpClient from "../../../services/services";
 import { loadProgressBar } from "axios-progress-bar";
-import CardItem from "../UI/CardItem";
+import CardItem from "../../ui/CardItem";
 
 const RequestsBooks = () => {
   const [books, setBooks] = useState([]);
@@ -43,13 +43,7 @@ const RequestsBooks = () => {
             idBook={book._id}
             title={book.idBook.title}
             author={book.idBook.author}
-            publishedYear={book.idBook.publishedYear}
-            genre={book.idBook.genre}
-            dateRequest={book.dateRequest}
-            status={book.status}
-            dateReturn={book.dateReturn}
-            userRequest={book.idStudent.name}
-            idUser={book.idStudent._id}
+            url={'librarian/requestdetail'}
           />
         ))}
       </div>

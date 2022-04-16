@@ -3,7 +3,7 @@ import httpClient from "../../../services/services";
 import { AuthContext } from "../../../auth/AuthContext";
 import { loadProgressBar } from "axios-progress-bar";
 import { toast } from "react-toastify";
-import CardItem from "./CardItem";
+import CardItem from "../../ui/CardItem";
 
 const Cards = ({ idBook, title, author, publishedYear, genre, stock }) => {
   const { user } = useContext(AuthContext);

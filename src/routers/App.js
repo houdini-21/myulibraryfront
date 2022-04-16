@@ -4,7 +4,7 @@ import { AuthContext } from "../auth/AuthContext";
 import RoutesStudent from "../routers/RoutesStudent";
 import RoutesLibrarian from "../routers/RoutesLibrarian";
 import PrivateRoute from "./PrivateRoute";
-import Login from "../components/ui/login";
+import Login from "../components/login/login";
 
 const App = () => {
   const { user } = useContext(AuthContext);

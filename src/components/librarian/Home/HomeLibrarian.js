@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../auth/AuthContext";
 import httpClient from "../../../services/services";
-import CardItem from "../UI/CardItem";
+import CardItem from "../../ui/CardItem";
 import { loadProgressBar } from "axios-progress-bar";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -47,7 +47,7 @@ const HomeLibrarian = () => {
 
   return (
     <div className="px-8 py-5 w-full">
-      <div className="flex flex-row w-full flex-wrap justify-around mt-4 mb-4">
+    <div class="flex flex-row pt-4 justify-evenly items-start w-full flex-wrap">
         {books.length > 0 ? (
           books.map((book) => (
             <CardItem
@@ -55,9 +55,7 @@ const HomeLibrarian = () => {
               idBook={book._id}
               title={book.title}
               author={book.author}
-              publishedYear={book.publishedYear}
-              genre={book.genre}
-              stock={book.stock}
+              url={'librarian/booksdetail'}
             />
           ))
         ) : (
