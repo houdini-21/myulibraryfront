@@ -117,6 +117,7 @@ const HomeStudent = () => {
               title={book.title}
               author={book.author}
               url={`student/details`}
+              image={book.image}
             />
           ))
         ) : (

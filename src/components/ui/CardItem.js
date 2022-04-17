@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CardItem = ({ idBook, title, author, url, status, student }) => {
+const CardItem = ({ idBook, title, author, url, status, student, image }) => {
   return (
     <div className="w-1/2 md:w-1/2 lg:w-1/4 my-3">
       <Link to={`/${url}/${idBook}`}>
@@ -9,7 +9,7 @@ const CardItem = ({ idBook, title, author, url, status, student }) => {
           <div className="w-full">
             <img
               className="rounded shadow-md object-cover w-full h-full"
-              src="https://charlottesometimesgoestothemovies.files.wordpress.com/2020/03/books.jpg"
+              src={image}
               alt="books"
             />
           </div>

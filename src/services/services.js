@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const urlBase = "https://mylibraryapi.houdini21-dev.com";
+const urlBase = "http://localhost:3001";
+//const urlBase = "https://mylibraryapi.houdini21-dev.com";
 
 /**
  * @param {string}  url url a la cual consultar
@@ -24,16 +25,34 @@ const get = (url = "", headers = {}) =>
     },
   });
 
+
+
 const post = (url = "", body = {}, headers = {}) =>
   axios.post(readUrl(url), body, {
     headers: {
       Accept: "application/json",
+      //      "Content-Type": "multipart/form-data",
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
 
       ...headers,
     },
   });
+ 
+
+
+  const postUpload = (url = "", body = {}, headers = {}) =>
+  axios.post(readUrl(url), body, {
+    headers: {
+      Accept: "application/json",
+        "Content-Type": "multipart/form-data",
+      //"Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+
+      ...headers,
+    },
+  });
+
 
 const put = (url = "", body = {}, headers = {}) =>
   axios.put(readUrl(url), body, {
@@ -60,6 +79,7 @@ const exportObj = {
   get,
   post,
   put,
+  postUpload,
   delete: del,
 };
 export default exportObj;

@@ -11,8 +11,6 @@ const RequestStudent = () => {
   const [books, setBooks] = useState([]);
   const [numPages, setNumPages] = useState(1);
 
-
-
   const loadMore = () => {
     if (page < numPages) {
       setPage((page) => page + 1);
@@ -52,19 +50,28 @@ const RequestStudent = () => {
   return (
     <div className="px-8 py-5 w-full">
       <div className="flex flex-row w-full flex-wrap justify-around mt-4 mb-4">
-        {books.map((book) => (
-          <CardItem
-            key={book._id}
-            idBook={book.idBook._id}
-            title={book.idBook.title}
-            author={book.idBook.author}
-            publishedYear={book.idBook.publishedYear}
-            genre={book.idBook.genre}
-            dateRequest={book.dateRequest}
-            status={book.status}
-            dateReturn={book.dateReturn}
-          />
-        ))}
+        {books.length > 0 ? (
+          books.map((book) => (
+            <CardItem
+              key={book._id}
+              idBook={book.idBook._id}
+              title={book.idBook.title}
+              author={book.idBook.author}
+              publishedYear={book.idBook.publishedYear}
+              genre={book.idBook.genre}
+              dateRequest={book.dateRequest}
+              status={book.status}
+              dateReturn={book.dateReturn}
+              image={book.image}
+            />
+          ))
+        ) : (
+          <div className="flex flex-col w-full justify-center items-center mt-4 mb-4">
+            <h1 className="text-3xl font-bold text-gray-800">
+              You don't have any request
+            </h1>
+          </div>
+        )}
       </div>
       {page < numPages && (
         <button

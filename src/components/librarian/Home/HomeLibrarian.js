@@ -57,6 +57,7 @@ const HomeLibrarian = () => {
               title={book.title}
               author={book.author}
               url={'librarian/booksdetail'}
+              image={book.image}
             />
           ))
         ) : (

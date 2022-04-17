@@ -125,6 +125,7 @@ const CreateStudents = () => {
           <select
             name="role"
             onChange={formik.handleChange}
+            value={formik.values.role}
             className="focus:border-green focus:ring-1 focus:ring-green focus:outline-none
                     w-1/2
                     text-base text-black
@@ -135,8 +136,9 @@ const CreateStudents = () => {
                     px-2
                     my-4"
           >
-            <option value="0">Student</option>
-            <option value="1">Librarian</option>
+            <option value="0">Select a role</option>
+            <option value="1">Student</option>
+            <option value="2">Librarian</option>
           </select>
           <button
             type="submit"

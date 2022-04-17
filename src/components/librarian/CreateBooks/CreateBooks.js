@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../auth/AuthContext";
 import httpClient from "../../../services/services";
 import { useFormik } from "formik";
@@ -6,8 +6,16 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { loadProgressBar } from "axios-progress-bar";
 
+import { FilePond, registerPlugin } from "react-filepond";
+import "filepond/dist/filepond.min.css";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+
 const CreateBooks = () => {
   const { user } = useContext(AuthContext);
+  const [files, setFiles] = useState([]);
   let navigate = useNavigate();
 
   const formik = useFormik({
@@ -19,8 +27,16 @@ const CreateBooks = () => {
       stock: "",
     },
     onSubmit: (values) => {
+      const formData = new FormData();
+      formData.append("files", files[0].file);
+      formData.append("title", values.title);
+      formData.append("author", values.author);
+      formData.append("publishedYear", values.publishedYear);
+      formData.append("genre", values.genre);
+      formData.append("stock", values.stock);
+
       httpClient
-        .post("librarian/add", values, {
+        .postUpload("librarian/add", formData, {
           Authorization: `JWT ${user.token}`,
         })
         .then((res) => {
@@ -123,7 +139,7 @@ const CreateBooks = () => {
                     my-4"
           />
           <input
-            type="text"
+            type="number"
             name="stock"
             placeholder="Stock"
             onChange={formik.handleChange}
@@ -138,6 +154,18 @@ const CreateBooks = () => {
                     px-2
                     my-4"
           />
+          <div className="w-1/2">
+            <FilePond
+              files={files}
+              onupdatefiles={setFiles}
+              allowMultiple={true}
+              //instantUpload={false}
+              required={true}
+              maxFiles={1}
+              name="files"
+              labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+            />
+          </div>
           <button
             type="submit"
             className="focus:bg-primary-400 py-2 px-12 rounded bg-primary text-white mt-4 w-1/2"

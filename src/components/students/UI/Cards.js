@@ -3,7 +3,7 @@ import httpClient from "../../../services/services";
 import { AuthContext } from "../../../auth/AuthContext";
 import CardItem from "../../ui/CardItem";
 
-const Cards = ({ idBook, title, author }) => {
+const Cards = ({ idBook, title, author, image }) => {
   const { user } = useContext(AuthContext);
 
  
@@ -14,6 +14,7 @@ const Cards = ({ idBook, title, author }) => {
         title={title}
         author={author}
         url={`student/details`}
+        image={image}
       />
     </>
   );

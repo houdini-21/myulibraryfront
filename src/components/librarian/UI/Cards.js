@@ -5,7 +5,7 @@ import { loadProgressBar } from "axios-progress-bar";
 import { toast } from "react-toastify";
 import CardItem from "../../ui/CardItem";
 
-const Cards = ({ idBook, title, author, publishedYear, genre, stock }) => {
+const Cards = ({ idBook, title, author, publishedYear, genre, stock, image }) => {
   const { user } = useContext(AuthContext);
 
   const requestBooking = (idBook) => {
@@ -42,6 +42,7 @@ const Cards = ({ idBook, title, author, publishedYear, genre, stock }) => {
         genre={genre}
         stock={stock}
         requestBooking={requestBooking}
+        image={image}
       />
     </>
   );

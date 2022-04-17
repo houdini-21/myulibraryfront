@@ -49,6 +49,7 @@ const RequestsBooks = () => {
               url={"librarian/requestdetail"}
               status={book.status}
               student={book.idStudent.name}
+              image={book.idBook.image}
             />
           ))
         ) : (
