@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const urlBase = "https://mylibraryu.herokuapp.com/";
+const urlBase = "https://mylibraryapi.houdini21-dev.com";
 
 /**
  * @param {string}  url url a la cual consultar
@@ -18,6 +18,8 @@ const get = (url = "", headers = {}) =>
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+
       ...headers,
     },
   });
@@ -27,6 +29,8 @@ const post = (url = "", body = {}, headers = {}) =>
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+
       ...headers,
     },
   });
@@ -36,6 +40,8 @@ const put = (url = "", body = {}, headers = {}) =>
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+
       ...headers,
     },
   });
@@ -45,6 +51,8 @@ const del = (url = "", headers = {}) =>
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+
       ...headers,
     },
   });
