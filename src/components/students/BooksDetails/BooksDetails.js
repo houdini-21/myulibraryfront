@@ -15,7 +15,7 @@ const BooksDetails = () => {
       idBook,
       idStudent: user.userId,
     };
-    console.log(body);
+    //body);
     httpClient
       .post(`student/books/requestbook`, body, {
         Authorization: `JWT ${user.token}`,

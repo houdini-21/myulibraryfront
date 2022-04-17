@@ -29,7 +29,7 @@ const RequestsBooks = () => {
         .then((res) => {
           setBooks((books) => books.concat(res.data.books));
           setNumPages(res.data.numPages);
-          console.log(res.data.books);
+          //res.data.books);
           loadProgressBar();
         });
     };
@@ -39,15 +39,23 @@ const RequestsBooks = () => {
   return (
     <div className="px-8 py-5 w-full">
       <div className="flex flex-row w-full flex-wrap justify-around mt-4 mb-4">
-        {books.map((book) => (
-          <CardItem
-            key={book._id}
-            idBook={book._id}
-            title={book.idBook.title}
-            author={book.idBook.author}
-            url={"librarian/requestdetail"}
-          />
-        ))}
+        {books.length > 0 ? (
+          books.map((book) => (
+            <CardItem
+              key={book._id}
+              idBook={book._id}
+              title={book.idBook.title}
+              author={book.idBook.author}
+              url={"librarian/requestdetail"}
+              status={book.status}
+              student={book.idStudent.name}
+            />
+          ))
+        ) : (
+          <div className="w-full flex flex-col items-center justify-center">
+            <h3 className="text-3xl text-gray-800">No book requests</h3>
+          </div>
+        )}
       </div>
       {page < numPages && (
         <button

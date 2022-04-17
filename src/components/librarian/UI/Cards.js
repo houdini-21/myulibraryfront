@@ -13,7 +13,7 @@ const Cards = ({ idBook, title, author, publishedYear, genre, stock }) => {
       idBook,
       idStudent: user.userId,
     };
-    console.log(body);
+    //body);
     httpClient
       .post(`student/books/requestedBook`, body, {
         Authorization: `JWT ${user.token}`,

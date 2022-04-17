@@ -16,7 +16,7 @@ const CreateStudents = () => {
       lastname: "",
       email: "",
       password: "",
-      role: 2,
+      role: 0,
     },
     onSubmit: (values) => {
       httpClient
@@ -122,6 +122,22 @@ const CreateStudents = () => {
                     px-2
                     my-4"
           />
+          <select
+            name="role"
+            onChange={formik.handleChange}
+            className="focus:border-green focus:ring-1 focus:ring-green focus:outline-none
+                    w-1/2
+                    text-base text-black
+                    placeholder-gray-500
+                    border border-gray-200
+                    rounded-md
+                    py-2
+                    px-2
+                    my-4"
+          >
+            <option value="0">Student</option>
+            <option value="1">Librarian</option>
+          </select>
           <button
             type="submit"
             className="focus:bg-primary-400 py-2 px-12 rounded bg-primary text-white mt-4 w-1/2"
