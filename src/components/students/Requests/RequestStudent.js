@@ -62,7 +62,7 @@ const RequestStudent = () => {
               dateRequest={book.dateRequest}
               status={book.status}
               dateReturn={book.dateReturn}
-              image={book.image}
+              image={book.idBook.image}
             />
           ))
         ) : (
